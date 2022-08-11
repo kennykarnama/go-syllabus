@@ -1,0 +1,50 @@
+= Golang Syllabus
+Huripto Sugandi; Kenny Karnama;
+:toc:
+
+== Introduction
+
+To do
+
+=== Local Environment Setup
+
+To do
+
+==== Hello World
+
+[source,go]
+
+----
+
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello World")
+}
+----
+
+== Syntax
+
+To do
+
+=== Package
+=== Variables
+=== Functions
+=== Pointers
+=== Structs
+=== Maps
+=== Slices
+=== Decision structure
+=== Loops
+=== Range
+=== Interfaces
+=== Channels
+=== Encoding
+
+== Unit Test
+
+To do
+
+== Plugin & External Libraries
