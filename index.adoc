@@ -4,13 +4,21 @@ Huripto Sugandi; Kenny Karnama;
 
 == Introduction
 
-To do
+=== why ?
+
+Go is a compiled language, therefore it is much faster compared to other programming languages. What makes golang faster is that there is no runtime when executing a golang app. 
+Golang doesn’t support Object Oriented Programming so it is more straightforward, but if designed properly can work just as well.
+Golang supports concurrency which could be useful for many cases, unlike javascript or PHP which are single threaded programming languages. 
+And finally golang has excellent dependency management which works like a composer, but in a much more efficient way and is already built in in golang.
+
 
 === Local Environment Setup
 
-To do
+==== Windows
+==== Mac OS
+==== Linux
 
-==== Hello World
+=== Hello World
 
 [source,go]
 
@@ -25,12 +33,12 @@ func main() {
 }
 ----
 
-== Syntax
+== Syntax 
+
+=== Variables
 
 To do
 
-=== Package
-=== Variables
 === Functions
 === Pointers
 === Structs
@@ -42,6 +50,57 @@ To do
 === Interfaces
 === Channels
 === Encoding
+
+== Package
+
+Go programs are structured in package. Package is a way to embrace DRY principle. A package is nothing more than a folder consists of multiple go source files. You can think package as the workspace.
+
+:imagesdir: img/
+
+image::golang_package_illustration.png[]
+
+To start with package, the syntax is like this
+
+[source,go]
+
+----
+package <your package name>
+----
+
+Inside a package, we can decide whether a particular struct or functions can be exported or it stays private.
+
+[source,go]
+
+----
+package example
+
+// Goes exported
+// you can call it example.Public
+type Public struct {
+
+}
+
+// Stays private inside the package
+type private struct {
+
+}
+----
+
+All internal libraries in Go use package. For example, package fmt. We can use this package to print out some stuffs to the stdout for example.
+
+[source,go]
+
+----
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello")
+}
+----
+
+If you notice, everytime you run a go program, the execution is placed inside main go with package main and function main.This is a special because it is used to indicate a go source is meant to be executable.
 
 == Unit Test
 
