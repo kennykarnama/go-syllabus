@@ -63,6 +63,145 @@ For supported data types in Go, you can see in here:
 https://go.dev/ref/spec#Types
 
 === Functions
+
+A Function is used to wrap a sequence of statements as a unit. Function can be called everywhere (as long as they are defined with public access modifier). The importance of function:
+
+- breaks a big job into smaller pieces
+- hide implementation details from user point of view
+- code reusability
+
+In Go, function is declared like this
+
+[source,go]
+----
+func name(parameter-list) (result-list) { body
+    // body
+}
+
+----
+
+Function has
+
+- name
+- parameters
+- return types
+
+There are several models of functions in Go
+
+. By number of values returned
+.. single value
+.. multiple values
+
+. By Parameters
+.. variable
+... by value
+... by reference 
+.. variadic
+
+Please look at this example for all models of functions
+
+- By return value
+
+[source,go]
+----
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	result := add(1, 2)
+	fmt.Println(result)
+
+	p, err := check("123")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(p)
+}
+
+// single return value
+func add(x int, y int) int {
+	return x + y
+}
+
+type Person struct {
+	ID   string
+	Name string
+}
+
+func (p *Person) String() string {
+	return fmt.Sprintf("ID: %s\nName: %s", p.ID, p.Name)
+}
+
+// multiple values returned
+func check(id string) (*Person, error) {
+	return &Person{
+		ID:   "123",
+		Name: "Testt",
+	}, nil
+}
+----
+
+- By parameters
+
+[source,go]
+----
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	result := add(1, 2)
+	fmt.Println(result)
+
+	p := &Person{}
+	defaultValue(p)
+	fmt.Println(p)
+
+	res := sum(1, 2, 3)
+	fmt.Println(res)
+
+}
+
+// by value
+func add(x int, y int) int {
+	return x + y
+}
+
+// by reference. notes data type such as: channel, map, slice
+// are passed by reference
+type Person struct {
+	ID   string
+	Name string
+}
+
+func (p *Person) String() string {
+	return fmt.Sprintf("ID: %s\nName: %s", p.ID, p.Name)
+}
+
+func defaultValue(p *Person) {
+	p.ID = "test-123"
+	p.Name = "Test"
+}
+
+// variadic
+
+func sum(nums ...int) int {
+	var acc int
+	for _, num := range nums {
+		acc += num
+	}
+	return acc
+}
+----
+
+
 === Pointers
 === Structs
 === Maps
