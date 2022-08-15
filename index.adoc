@@ -123,7 +123,7 @@ func main() {
 }
 ----
 
-If you notice, everytime you run a go program, the execution is placed inside main go with package main and function main. This is special because it is used to indicate a go source is meant to be executable.
+If you notice, everytime you run a go program, the execution is placed inside main go with package main and function main.This is a special because it is used to indicate a go source is meant to be executable.
 
 == Unit Test
 
