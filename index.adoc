@@ -37,7 +37,30 @@ func main() {
 
 === Variables
 
-To do
+Variables in Go can be defined in two ways
+
+[source,go]
+
+----
+var s string // var declaration
+
+s := "" // short variable declaration
+
+----
+
+In Go, there is zero-value mechanism for value. This mechanism ensures every variables in Go have default values (no variables are left uninitalized).
+
+Each of variable declared (var & short declaration) consists of:
+
+- name
+- type
+- initialization value
+
+For supported data types in Go, you can see in here: 
+
+:hide-uri-scheme:
+
+https://go.dev/ref/spec#Types
 
 === Functions
 === Pointers
