@@ -243,6 +243,180 @@ func positiveExp(b, n int) int {
 
 === Pointers
 === Structs
+
+Struct is an aggregate data type groups zero or more named values as a single entity. It's like a class but in a simpler way.
+
+[source,go]
+
+----
+type <Struct-Name> struct {
+	// fields
+}
+----
+
+A Go struct has the following structure
+
+- struct name
+- member of the structs (field)
+
+One important thing, a struct can have zero members. We called it an empty struct.
+
+[source,go]
+
+----
+type Empty {}
+----
+
+To initialize value of exported fields of a struct, we use struct literals
+
+[source,go]
+
+----
+type Point struct{ X, Y int }
+
+// struct literals without 
+// explicit fields named
+// require precise ordering of the fields
+p := Point{1, 2} // x, y order
+
+// Explicit initialization
+// by fields name
+p := Point{
+	X: 1,
+	Y: 2,
+}
+----
+
+Like a class, A Go struct could have methods associated with it. To define a function associated with a Go struct, we can do something like this:
+
+Suppose we have an ADT (Abstract Data Type) Tree. Our tree ADT has following UML class diagram
+
+:imagesdir: img/
+
+image::tree_adt.png[]
+
+Our tree has public method Depth. It returns the deepest level of tree.
+
+Suppose we have a tree like this
+
+:imagesdir: img/
+
+image::tree_q.png[]
+
+The implementation will look like this
+
+[source,go]
+
+----
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+type Tree struct {
+	Val   int
+	Left  *Tree
+	Right *Tree
+}
+
+func NewTree(val int) *Tree {
+	return &Tree{
+		Val: val,
+	}
+}
+
+func (t *Tree) Depth() int {
+	if t == nil {
+		return 0
+	}
+	lh := 0
+	rh := 0
+	if t.Left != nil {
+		lh = 1 + t.Left.Depth()
+	}
+	if t.Right != nil {
+		rh = 1 + t.Right.Depth()
+	}
+	return int(math.Max(float64(lh), float64(rh)))
+}
+
+func main() {
+	r := NewTree(1)
+	tl_1 := NewTree(2)
+	tr_1 := NewTree(3)
+	tr_1_1 := NewTree(10)
+
+	tr_1.Right = tr_1_1
+
+	r.Left = tl_1
+	r.Right = tr_1
+
+	fmt.Println(r.Depth())
+
+}
+----
+
+OOPs fans may ask what about inheritance. Inheritance has good and bad opinions among Software Engineer. In Go, Entity dependency is described as a composition over inheritance. So each of an entity is composed from a simpler entity. So, related to struct, the way you mimic composition is by struct embedding.
+
+There are two ways to do embedding
+
+- Anonymous
+
+[source,go]
+
+----
+type Point struct {
+	X,Y int
+}
+
+type Circle struct {
+	Point
+	Radius int
+}
+
+type Wheel struct {
+	Circle
+	Spokes int
+}
+
+// declaration
+var w Wheel
+w.X = 8 // equivalent to w.Circle.Point.X = 8
+w.Y = 8 // equivalent to w.Circle.Point.Y = 8
+w.Radius = 5 // equivalent to w.Circle.Radius = 5
+w.Spokes = 20
+----
+
+- Named fields
+
+[source,go]
+
+----
+type Point struct {
+	X, Y int
+}
+
+type Circle struct {
+	Center Point
+	Radius int
+}
+
+type Wheel struct {
+	Circle Circle
+	Spokes int
+}
+
+var w Wheel
+w.Circle.Center.X = 8
+w.Circle.Center.Y = 8
+w.Circle.Radius = 5
+w.Spokes = 20
+----
+
+
+
 === Maps
 === Slices
 === Decision structure
@@ -296,10 +470,38 @@ for key, name := range names {
 
 in range loop, key variable refers to index of an iterable elements. It could be zero based index (in slices) or it could be map key.
 
-=== Range
+- exit a loop
+
+You can terminate the loop earlier by using break statement.
+
+[source,go]
+
+----
+for i := 0; i < 10; i++ {
+	if i % 5 == 0 {
+		break
+	}
+}
+----
+
+you could also skip a statement using continue keyword
+
+[source,go]
+
+----
+var evenSum int
+for i := 1; i <= 10; i++ {
+	if i % 2 != 0 {
+		continue
+	}
+	evenSum += i
+}
+----
 === Interfaces
 === Channels
 === Encoding
+
+
 
 == Package
 
