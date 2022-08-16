@@ -497,11 +497,11 @@ for i := 1; i <= 10; i++ {
 	evenSum += i
 }
 ----
+
+=== Range
 === Interfaces
 === Channels
 === Encoding
-
-
 
 == Package
 
