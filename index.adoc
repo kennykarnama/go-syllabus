@@ -201,6 +201,45 @@ func sum(nums ...int) int {
 }
 ----
 
+There are some additional variations of functions:
+
+- Anonymous function
+
+[source,go]
+
+----
+package main
+
+import "fmt"
+
+func main() {
+	squared := func(n int) int {
+		return n * n
+	}
+	fmt.Println(squared(2))
+}
+----
+
+- Recursion
+
+[source,go]
+
+----
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println(positiveExp(2, 4))
+}
+
+func positiveExp(b, n int) int {
+	if n == 0 {
+		return 1
+	}
+	return b * positiveExp(b, n-1)
+}
+----
 
 === Pointers
 === Structs
