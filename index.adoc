@@ -247,6 +247,55 @@ func positiveExp(b, n int) int {
 === Slices
 === Decision structure
 === Loops
+
+- Three component loop
+
+[source,go]
+
+----
+for i := 0; i < 5; i++ {
+	// do something
+}
+----
+
+- While
+
+[source,go]
+
+----
+for n < 10 {
+ // do somehting
+}
+----
+
+- Infinite loop
+
+[source,go]
+
+----
+for {
+	// do something
+}
+----
+
+- range loop
+
+Iterates over an iterable elements such as: slices, maps etc
+
+[source,go]
+
+----
+names := []string{
+	"Budi",
+	"Andi"
+}
+for key, name := range names {
+	fmt.Println(key, name)
+}
+----
+
+in range loop, key variable refers to index of an iterable elements. It could be zero based index (in slices) or it could be map key.
+
 === Range
 === Interfaces
 === Channels
